@@ -11,10 +11,16 @@ namespace OrchidModel
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
             Database.Migrate();
+
         }
 
         public DbSet<OrchidNew> OrchidNews { get; set; }
-        public object OrchidNew { get;  set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Employee> Employes { get; set; }
+        
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

@@ -11,7 +11,7 @@ namespace OrchidModel.Interfaces
 
         OrchidNew GetAllOrchidNewByID(int id);
         void CreateOrchid(OrchidNew orchidObject);
-        void UpdateOrchid(int id, OrchidNew orchidObject);
+        int UpdateOrchid(int id, OrchidNew orchidObject);
         void DeleteOrchid(int ID);
     }
 }

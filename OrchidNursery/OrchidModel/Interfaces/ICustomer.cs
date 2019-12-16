@@ -10,6 +10,10 @@ namespace OrchidModel.Interfaces
         ICollection<Customer> GetAllCustomer();
 
         Customer GetCustomerByID(int ID);
-        //void CreateCustomer(Customer)
+
+        void CreateCustomer(Customer customerobject);
+        int UpdateCustomer(int ID, Customer customerobject);
+        void DeleteCustomer(int ID);
+
     }
 }

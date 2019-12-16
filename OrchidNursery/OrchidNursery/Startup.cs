@@ -29,12 +29,14 @@ namespace OrchidNursery
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
 
             string SQLConnectionString = Configuration["connectionString:OrchidDbConnectionString"];
             services.AddDbContext<MyDbContext>(a => a.UseSqlServer(SQLConnectionString));
 
             services.AddScoped<IOrchid, OrchidNewRepository>();
+            services.AddScoped<ICustomer, CustomerRepositry>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,5 +58,6 @@ namespace OrchidNursery
                 endpoints.MapControllers();
             });
         }
+       
     }
 }

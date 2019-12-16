@@ -1,5 +1,5 @@
-﻿using OrchidModel.Entities;
-using OrchidModel.Interfaces;
+﻿using OrchidModel.Interfaces;
+using OrchidModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Text;
 
 namespace OrchidModel.Repository
 {
+
     public class OrchidNewRepository : IOrchid
     {
         MyDbContext _myDbContext;
@@ -29,22 +30,25 @@ namespace OrchidModel.Repository
             _myDbContext.SaveChanges();
         }
 
+        public OrchidNew GetAllOrchidNewByID(int ID)
+        {
+            var orchids = _myDbContext.OrchidNews.Where(c => c.orchidID == ID).SingleOrDefault();
+            return orchids;
+        }
+
         public ICollection<OrchidNew> GetAllOrchids()
         {
             var orchids = _myDbContext.OrchidNews.ToList();
             return orchids;
         }
 
-        public OrchidNew GetAllOrchidNewByID(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public int UpdateOrchid(int id, OrchidNew orchidObject)
+        public int UpdateOrchid(int ID, OrchidNew orchidObject)
         {
-            var orchids = _myDbContext.OrchidNews.Where(c => c.orchidID == id).SingleOrDefault();
+            var orchids = _myDbContext.OrchidNews.Where(c => c.orchidID == ID).SingleOrDefault();
 
-            if(orchids == null)
+            if (orchids == null)
             {
                 return 0;
             }
@@ -58,13 +62,13 @@ namespace OrchidModel.Repository
                 orchids.manuDate = orchidObject.manuDate;
                 orchids.expTime = orchidObject.expTime;
                 _myDbContext.SaveChanges();
+                return 1; //If Success Return One.
 
             }
         }
 
-        void IOrchid.UpdateOrchid(int id, OrchidNew orchidObject)
-        {
-            throw new NotImplementedException();
-        }
+     
+
+        
     }
 }

@@ -6,30 +6,30 @@ using System.Text;
 
 namespace OrchidModel.Entities
 {
-    public class Customer
+    public class Employee
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegnoID { get; set; }
+        public int EmplyID { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string EmpName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string EmpAddress { get; set; }
+        public string UserAddress { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string  NIC { get; set; }
+        [MaxLength(25)]
+        public int UserNIC { get; set; }
 
         [Required]
-        [MaxLength(90)]
-        public string TelephoneNo { get; set; }
+        [MaxLength(25)]
+        public int UserTeleNo { get; set; }
 
         [Required]
-        [MaxLength(80)]
-        public string password { get; set; }
+        [MaxLength(25)]
+        public string UserPass { get; set; }
     }
 }
