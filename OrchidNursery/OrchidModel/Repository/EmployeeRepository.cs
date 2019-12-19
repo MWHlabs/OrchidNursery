@@ -2,15 +2,23 @@
 using OrchidModel.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace OrchidModel.Repository
 {
     public class EmployeeRepository : IEmployee
     {
+        MyDbContext _myDbContext;
+
+        public EmployeeRepository (MyDbContext dbContext)
+        {
+            _myDbContext = dbContext;
+        }
         public void CreateEmployee(Employee employeeobject)
         {
-            throw new NotImplementedException();
+            _myDbContext.Employes.Add(employeeobject);
+            _myDbContext.SaveChanges();
         }
 
         public void DeleteEmployee(int ID)
@@ -20,12 +28,14 @@ namespace OrchidModel.Repository
 
         public Employee GetEmployeeByID(int ID)
         {
-            throw new NotImplementedException();
+            var employes = _myDbContext.Employes.Where(e => e.EmplyID == ID).SingleOrDefault();
+            return employes;
         }
 
         public ICollection<Employee> GetEmployees()
         {
-            throw new NotImplementedException();
+            var employes = _myDbContext.Employes.ToList();
+            return employes;
         }
 
         public int UpdateEmployee(int ID, Employee employeeobject)
