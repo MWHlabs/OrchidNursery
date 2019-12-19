@@ -14,11 +14,16 @@ using Microsoft.Extensions.Logging;
 using OrchidModel;
 using OrchidModel.Interfaces;
 using OrchidModel.Repository;
+using System.Web.Http.Cors;
+using Microsoft.AspNetCore.Cors;
+using EnableCorsAttribute = System.Web.Http.Cors.EnableCorsAttribute;
 
 namespace OrchidNursery
 {
     public class Startup
     {
+        private object config;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,6 +42,16 @@ namespace OrchidNursery
 
             services.AddScoped<IOrchid, OrchidNewRepository>();
             services.AddScoped<ICustomer, CustomerRepositry>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyOrgin",
+                builder => builder.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin()
+                    );
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,13 +65,15 @@ namespace OrchidNursery
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("AllowMyOrgin");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
        
     }
