@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace OrchidModel.Repository
 {
@@ -58,6 +60,20 @@ namespace OrchidModel.Repository
                 return 1;
                 
             }
+        }
+        public Customer PostCustomer(Customer customer)
+        {
+            try
+            {
+                _myDbContext.Customers.Add(customer);
+                return customer;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }

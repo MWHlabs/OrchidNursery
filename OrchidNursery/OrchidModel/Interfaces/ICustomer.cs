@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OrchidModel.Interfaces
 {
@@ -11,7 +12,7 @@ namespace OrchidModel.Interfaces
 
         Customer GetCustomerByID(int ID);
 
-        void CreateCustomer(Customer customerobject);
+        Customer PostCustomer(Customer customerobject);
         int UpdateCustomer(int ID, Customer customerobject);
         void DeleteCustomer(int ID);
 
